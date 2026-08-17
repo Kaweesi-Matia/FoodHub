@@ -10,7 +10,7 @@ export default function Footer() {
             FoodHub
           </div>
           <p className="text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} FoodHub. Built as a MERN stack portfolio project.
+            &copy; {new Date().getFullYear()} FoodHub. © 2026 FoodHub. Built with MERN stack.
           </p>
         </div>
       </div>
