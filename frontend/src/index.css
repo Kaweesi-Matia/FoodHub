@@ -1,0 +1,981 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================
+   FOODHUB / MEALCONNECT — PROFESSIONAL DESIGN SYSTEM
+   ========================================================= */
+
+:root {
+  --foodhub-orange: #f97316;
+  --foodhub-orange-dark: #ea580c;
+  --foodhub-orange-deep: #c2410c;
+  --foodhub-orange-light: #fff7ed;
+
+  --foodhub-text: #262626;
+  --foodhub-muted: #737373;
+  --foodhub-border: #e5e7eb;
+  --foodhub-white: #ffffff;
+
+  --foodhub-shadow:
+    0 4px 18px rgba(0, 0, 0, 0.05),
+    0 12px 35px rgba(0, 0, 0, 0.04);
+}
+
+/* =========================================================
+   BASE
+   ========================================================= */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+
+    background:
+      radial-gradient(
+        circle at 10% 0%,
+        rgba(249, 115, 22, 0.035),
+        transparent 30%
+      ),
+      #fafafa;
+
+    color: var(--foodhub-text);
+
+    font-family:
+      Inter,
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      sans-serif;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  ::selection {
+    background: #fed7aa;
+    color: #7c2d12;
+  }
+
+  button,
+  a,
+  input,
+  textarea,
+  select {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* =========================================================
+   FOODHUB NAVBAR
+   ========================================================= */
+
+header.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+
+  background: rgba(255, 255, 255, 0.94) !important;
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border-bottom: 1px solid rgba(229, 231, 235, 0.8) !important;
+
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.025),
+    0 8px 30px rgba(0, 0, 0, 0.045) !important;
+
+  transition:
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+header.sticky:hover {
+  background: rgba(255, 255, 255, 0.97) !important;
+}
+
+header.sticky nav {
+  min-height: 72px;
+}
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+header.sticky nav > a:first-child {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  margin-right: 28px;
+
+  color: var(--foodhub-orange) !important;
+
+  font-size: 1.35rem;
+  font-weight: 900;
+
+  letter-spacing: -0.045em;
+
+  text-decoration: none;
+
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+header.sticky nav > a:first-child svg {
+  color: var(--foodhub-orange) !important;
+
+  transition:
+    transform 0.25s ease,
+    color 0.2s ease;
+}
+
+header.sticky nav > a:first-child:hover {
+  color: var(--foodhub-orange-dark) !important;
+
+  transform: translateY(-1px);
+}
+
+header.sticky nav > a:first-child:hover svg {
+  color: var(--foodhub-orange-dark) !important;
+
+  transform: rotate(-5deg) scale(1.06);
+}
+
+header.sticky nav > a:first-child::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: -7px;
+
+  width: 30px;
+  height: 3px;
+
+  border-radius: 999px;
+
+  background: linear-gradient(
+    90deg,
+    var(--foodhub-orange),
+    #fb923c
+  );
+
+  transition: width 0.25s ease;
+}
+
+header.sticky nav > a:first-child:hover::after {
+  width: 52px;
+}
+
+/* =========================================================
+   DESKTOP NAVIGATION LINKS
+   ========================================================= */
+
+header.sticky nav > div.hidden.md\:flex:first-of-type {
+  gap: 5px !important;
+}
+
+header.sticky nav > div.hidden.md\:flex:first-of-type a {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 42px;
+
+  padding: 8px 14px;
+
+  border-radius: 10px;
+
+  color: var(--foodhub-orange) !important;
+
+  font-size: 0.9rem;
+  font-weight: 650;
+
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+header.sticky nav > div.hidden.md\:flex:first-of-type a:hover {
+  color: var(--foodhub-orange-dark) !important;
+
+  background: var(--foodhub-orange-light);
+
+  transform: translateY(-1px);
+}
+
+header.sticky nav > div.hidden.md\:flex:first-of-type a::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  bottom: 4px;
+
+  width: 0;
+  height: 2px;
+
+  border-radius: 999px;
+
+  background: var(--foodhub-orange);
+
+  transform: translateX(-50%);
+
+  transition: width 0.2s ease;
+}
+
+header.sticky nav > div.hidden.md\:flex:first-of-type a:hover::after {
+  width: 20px;
+}
+
+/* =========================================================
+   RIGHT NAVIGATION
+   ========================================================= */
+
+header.sticky nav > div.hidden.md\:flex:last-of-type {
+  gap: 7px !important;
+}
+
+/* =========================================================
+   CART
+   ========================================================= */
+
+header.sticky nav a[href="/cart"] {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  padding: 0 !important;
+
+  border-radius: 11px !important;
+
+  color: var(--foodhub-orange) !important;
+
+  background: transparent;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+header.sticky nav a[href="/cart"]:hover {
+  background: var(--foodhub-orange-light) !important;
+
+  color: var(--foodhub-orange-dark) !important;
+
+  transform: translateY(-1px);
+}
+
+header.sticky nav a[href="/cart"] svg {
+  color: var(--foodhub-orange) !important;
+}
+
+header.sticky nav a[href="/cart"]:hover svg {
+  color: var(--foodhub-orange-dark) !important;
+
+  transform: scale(1.08);
+}
+
+header.sticky nav a[href="/cart"] span {
+  background: var(--foodhub-orange) !important;
+
+  color: white !important;
+
+  border: 2px solid white;
+
+  box-shadow:
+    0 3px 8px rgba(234, 88, 12, 0.25);
+}
+
+/* =========================================================
+   LOGIN
+   ========================================================= */
+
+header.sticky nav a[href="/login"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 40px;
+
+  padding: 8px 14px;
+
+  border: 1px solid #fed7aa !important;
+
+  border-radius: 10px !important;
+
+  background: white !important;
+
+  color: var(--foodhub-orange) !important;
+
+  font-size: 0.88rem;
+  font-weight: 700;
+
+  text-decoration: none;
+
+  box-shadow: none !important;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+header.sticky nav a[href="/login"]:hover {
+  background: var(--foodhub-orange-light) !important;
+
+  border-color: #fdba74 !important;
+
+  color: var(--foodhub-orange-dark) !important;
+
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   SIGN UP — NO FILLED BUTTON
+   ========================================================= */
+
+header.sticky nav a[href="/register"],
+header.sticky nav a.foodhub-signup-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 40px;
+
+  padding: 8px 10px;
+
+  border: none !important;
+
+  border-radius: 9px !important;
+
+  background: transparent !important;
+
+  color: var(--foodhub-orange) !important;
+
+  font-size: 0.9rem;
+  font-weight: 800;
+
+  text-decoration: none;
+
+  box-shadow: none !important;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+header.sticky nav a[href="/register"]:hover,
+header.sticky nav a.foodhub-signup-link:hover {
+  background: var(--foodhub-orange-light) !important;
+
+  color: var(--foodhub-orange-dark) !important;
+
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   PROFILE
+   ========================================================= */
+
+header.sticky nav a[href="/profile"] {
+  color: var(--foodhub-orange) !important;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+header.sticky nav a[href="/profile"]:hover {
+  color: var(--foodhub-orange-dark) !important;
+
+  background: var(--foodhub-orange-light) !important;
+
+  transform: translateY(-1px);
+}
+
+header.sticky nav a[href="/profile"] svg {
+  color: var(--foodhub-orange) !important;
+}
+
+/* =========================================================
+   LOGOUT
+   ========================================================= */
+
+header.sticky nav button[title="Log out"] {
+  color: var(--foodhub-orange) !important;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+header.sticky nav button[title="Log out"]:hover {
+  color: #dc2626 !important;
+
+  background: #fef2f2 !important;
+
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   REMOVE HAMBURGER MENU
+   ========================================================= */
+
+/*
+  The mobile hamburger button is hidden completely.
+*/
+
+header.sticky nav > button.md\:hidden {
+  display: none !important;
+}
+
+/*
+  Also hide the mobile navigation panel.
+*/
+
+header.sticky > div.md\:hidden {
+  display: none !important;
+}
+
+/* =========================================================
+   GENERAL BUTTONS
+   ========================================================= */
+
+.btn {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  min-height: 44px;
+
+  padding: 10px 18px;
+
+  border-radius: 12px;
+
+  font-weight: 700;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: linear-gradient(
+    135deg,
+    var(--foodhub-orange),
+    var(--foodhub-orange-dark)
+  ) !important;
+
+  color: white !important;
+
+  border: none !important;
+
+  box-shadow:
+    0 7px 18px rgba(234, 88, 12, 0.2);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(
+    135deg,
+    var(--foodhub-orange-dark),
+    var(--foodhub-orange-deep)
+  ) !important;
+
+  box-shadow:
+    0 10px 25px rgba(234, 88, 12, 0.3);
+}
+
+.btn-outline {
+  background: white !important;
+
+  color: var(--foodhub-orange) !important;
+
+  border: 1px solid #fed7aa !important;
+
+  box-shadow: none !important;
+}
+
+.btn-outline:hover {
+  background: var(--foodhub-orange-light) !important;
+
+  color: var(--foodhub-orange-dark) !important;
+
+  border-color: #fdba74 !important;
+}
+
+.btn-danger {
+  background: #dc2626 !important;
+
+  color: white !important;
+
+  border: none !important;
+}
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+.input {
+  width: 100%;
+
+  padding: 12px 15px !important;
+
+  border: 1px solid #e5e7eb !important;
+
+  border-radius: 12px !important;
+
+  background: white !important;
+
+  color: #171717 !important;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.input:hover {
+  border-color: #d4d4d4 !important;
+}
+
+.input:focus {
+  outline: none !important;
+
+  border-color: var(--foodhub-orange) !important;
+
+  box-shadow:
+    0 0 0 4px rgba(249, 115, 22, 0.1) !important;
+}
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.card {
+  background: white !important;
+
+  border: 1px solid #eeeeee !important;
+
+  border-radius: 18px !important;
+
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.04),
+    0 15px 35px rgba(0, 0, 0, 0.04) !important;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.card:hover {
+  border-color: #fed7aa !important;
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.07),
+    0 25px 50px rgba(234, 88, 12, 0.07) !important;
+}
+
+/* =========================================================
+   BADGES
+   ========================================================= */
+
+.badge {
+  display: inline-flex !important;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 7px 14px !important;
+
+  border-radius: 999px !important;
+
+  font-size: 12px !important;
+
+  font-weight: 700 !important;
+
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.badge:hover {
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.bg-gradient-to-br.from-primary-600.to-primary-700 {
+  position: relative;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(255, 255, 255, 0.14),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 85% 75%,
+      rgba(255, 255, 255, 0.1),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #c2410c 0%,
+      #ea580c 50%,
+      #f97316 100%
+    ) !important;
+}
+
+.bg-gradient-to-br.from-primary-600.to-primary-700::before {
+  content: "";
+
+  position: absolute;
+
+  width: 420px;
+  height: 420px;
+
+  top: -210px;
+  right: -130px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.bg-gradient-to-br.from-primary-600.to-primary-700::after {
+  content: "";
+
+  position: absolute;
+
+  width: 300px;
+  height: 300px;
+
+  bottom: -180px;
+  left: -100px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.bg-gradient-to-br.from-primary-600.to-primary-700 > div {
+  position: relative;
+
+  z-index: 2;
+}
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
+
+.bg-gradient-to-br.from-primary-600.to-primary-700 .bg-white {
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.14),
+    0 25px 60px rgba(0, 0, 0, 0.08) !important;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.bg-gradient-to-br.from-primary-600.to-primary-700 .bg-white:focus-within {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.18),
+    0 0 0 4px rgba(255, 255, 255, 0.15) !important;
+}
+
+/* =========================================================
+   IMAGES
+   ========================================================= */
+
+img {
+  transition:
+    transform 0.35s ease,
+    filter 0.35s ease;
+}
+
+.group:hover img {
+  transform: scale(1.04);
+}
+
+/* =========================================================
+   TABLES
+   ========================================================= */
+
+table {
+  width: 100%;
+
+  border-collapse: separate;
+
+  border-spacing: 0;
+}
+
+thead {
+  background: #fafafa;
+}
+
+th {
+  color: #525252;
+
+  font-size: 0.75rem;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.04em;
+}
+
+tbody tr {
+  transition:
+    background-color 0.15s ease;
+}
+
+tbody tr:hover {
+  background: var(--foodhub-orange-light);
+}
+
+/* =========================================================
+   PAGE ANIMATION
+   ========================================================= */
+
+@keyframes foodhubFadeUp {
+  from {
+    opacity: 0;
+
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+main {
+  animation:
+    foodhubFadeUp 0.45s ease both;
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
+
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foodhub-orange);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+  header.sticky nav {
+    min-height: 66px;
+  }
+
+  header.sticky nav > a:first-child {
+    margin-right: 15px;
+  }
+
+  header.sticky nav > div.hidden.md\:flex:first-of-type a {
+    padding-left: 9px;
+    padding-right: 9px;
+
+    font-size: 0.82rem;
+  }
+
+  header.sticky nav > div.hidden.md\:flex:last-of-type {
+    gap: 3px !important;
+  }
+
+  header.sticky nav a[href="/login"] {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  header.sticky nav a[href="/register"] {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
+
+/*
+  At very small widths we keep the navbar horizontal
+  instead of displaying a hamburger menu.
+*/
+
+@media (max-width: 640px) {
+  header.sticky nav {
+    min-height: 62px;
+
+    overflow-x: auto;
+
+    white-space: nowrap;
+
+    scrollbar-width: none;
+  }
+
+  header.sticky nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  header.sticky nav > a:first-child {
+    flex-shrink: 0;
+
+    margin-right: 8px;
+
+    font-size: 1.08rem;
+  }
+
+  header.sticky nav > div.hidden.md\:flex:first-of-type {
+    display: flex !important;
+
+    flex-shrink: 0;
+  }
+
+  header.sticky nav > div.hidden.md\:flex:last-of-type {
+    display: flex !important;
+
+    flex-shrink: 0;
+  }
+
+  header.sticky nav > div.hidden.md\:flex:first-of-type a {
+    padding: 7px 8px;
+
+    font-size: 0.75rem;
+  }
+
+  header.sticky nav a[href="/cart"] {
+    width: 38px;
+    height: 38px;
+  }
+
+  header.sticky nav a[href="/login"],
+  header.sticky nav a[href="/register"] {
+    min-height: 38px;
+
+    font-size: 0.75rem;
+  }
+
+  .btn {
+    min-height: 44px;
+  }
+
+  .card {
+    border-radius: 15px !important;
+  }
+
+  .bg-gradient-to-br.from-primary-600.to-primary-700 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid rgba(234, 88, 12, 0.45);
+
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+  }
+}
