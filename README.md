@@ -1,4 +1,4 @@
-# FoodHub — MERN Food Delivery App
+# FoodHub — MERN Food Delivery App.
 
 A full-stack food delivery web application built with **MongoDB, Express, React, and Node.js**. Customers can browse restaurants, order food, and track deliveries; restaurant owners can manage menus and fulfill orders; admins can approve and moderate restaurants.
 
