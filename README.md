@@ -153,3 +153,4 @@ MIT — free to use .
 
 ## Deployment links
 **Backend**:[https://foodhub-4etq.onrender.com/]
+**Frontend**:[https://food-gbmb16rpl-kaweesimatias-projects.vercel.app/]
