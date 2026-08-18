@@ -150,3 +150,6 @@ With `NODE_ENV=production`, `backend/server.js` serves the built frontend from `
 ## License
 
 MIT — free to use .
+
+## Deployment links
+**Backend**:[https://foodhub-4etq.onrender.com/]
