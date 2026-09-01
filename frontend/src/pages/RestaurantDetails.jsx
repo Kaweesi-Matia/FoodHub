@@ -23,15 +23,19 @@ export default function RestaurantDetails() {
   useEffect(() => {
     (async () => {
       setLoading(true);
+      setError("");
       try {
-        const [restaurantRes, menuRes, reviewsRes] = await Promise.all([
+        const [restaurantRes, menuRes, reviewsRes] = await Promise.allSettled([
           fetchRestaurantById(id),
           fetchRestaurantMenu(id),
           fetchRestaurantReviews(id),
         ]);
-        setRestaurant(restaurantRes.data);
-        setMenu(menuRes.data);
-        setReviews(reviewsRes.data);
+        if (restaurantRes.status !== "fulfilled") {
+          throw restaurantRes.reason;
+        }
+        setRestaurant(restaurantRes.value.data);
+        setMenu(menuRes.status === "fulfilled" ? menuRes.value.data : []);
+        setReviews(reviewsRes.status === "fulfilled" ? reviewsRes.value.data : []);
       } catch (err) {
         setError(err.message);
       } finally {

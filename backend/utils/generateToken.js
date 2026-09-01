@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import { authCookieOptions } from "./cookieOptions.js";
 
 /**
  * Signs a JWT for a given user id and sets it as an httpOnly cookie.
@@ -10,12 +11,13 @@ const generateToken = (res, userId) => {
     expiresIn: process.env.JWT_EXPIRES_IN || "30d",
   });
 
-  res.cookie("token", token, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
-    maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-  });
+  res.cookie(
+    "token",
+    token,
+    authCookieOptions({
+      maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+    })
+  );
 
   return token;
 };

@@ -143,14 +143,44 @@ With `NODE_ENV=production`, `backend/server.js` serves the built frontend from `
 
 ## Deployment notes
 
-- **Backend**: deploy to Render, Railway, or a VPS; set the environment variables above.
-- **Frontend**: build with `npm run build` and either serve statically from the backend (see above) or deploy `frontend/dist` to Vercel/Netlify, pointing `VITE_API_URL` at your backend's URL.
-- **Database**: MongoDB Atlas free tier works well for a portfolio deployment.
+This repo is a split deploy: **Render** for the API, **Vercel** for the React app. Restaurant pages, login, and orders fail in the browser if the env vars and Vercel rewrites below are missing.
+
+### Render (backend)
+
+Root directory: `backend`. Start command: `npm start`.
+
+| Variable | Example |
+|----------|---------|
+| `NODE_ENV` | `production` |
+| `MONGO_URI` | your Atlas connection string |
+| `JWT_SECRET` | a long random secret |
+| `JWT_EXPIRES_IN` | `30d` |
+| `CLIENT_URL` | `https://your-app.vercel.app` (production URL, no trailing slash; comma-separate extra origins) |
+
+Seed Atlas once after the first deploy (`npm run seed` from the backend with `MONGO_URI` pointing at Atlas), otherwise the public restaurant list is empty.
+
+### Vercel (frontend)
+
+Set **Root Directory** to `frontend`, or deploy from the repo root (the root `vercel.json` already points at `frontend/dist`).
+
+`vercel.json` rewrites `/api/*` to the Render API and sends SPA routes like `/restaurants/:id` to `index.html`. Without that rewrite, opening a restaurant link directly (or refreshing it) returns a Vercel 404 and looks like “data didn’t load”.
+
+Optional build-time env:
+
+| Variable | Example |
+|----------|---------|
+| `VITE_API_URL` | `https://foodhub-4etq.onrender.com/api` |
+
+If `VITE_API_URL` is unset or still points at `localhost`, production builds call same-origin `/api`, which Vercel proxies to Render.
+
+Use the **Production** domain from the Vercel dashboard, not a preview URL (`…-hash-….vercel.app`). Preview deployments are often login-gated and the URL changes every deploy.
+
+In Vercel: **Settings → Deployment Protection** → turn off protection for Production so the site is public.
 
 ## License
 
 MIT — free to use .
 
 ## Deployment links
-**Backend**:[https://foodhub-4etq.onrender.com/]
-**Frontend**:[https://food-gbmb16rpl-kaweesimatias-projects.vercel.app/]
+**Backend**: [https://foodhub-4etq.onrender.com/](https://foodhub-4etq.onrender.com/)
+**Frontend**: [https://food-gbmb16rpl-kaweesimatias-projects.vercel.app/](https://food-gbmb16rpl-kaweesimatias-projects.vercel.app/)

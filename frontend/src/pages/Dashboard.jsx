@@ -13,13 +13,17 @@ export default function Dashboard() {
   const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState({ name: "", description: "", street: "", city: "" });
   const [creating, setCreating] = useState(false);
+  const [error, setError] = useState("");
 
   const loadRestaurants = async () => {
     setLoading(true);
+    setError("");
     try {
       const res = await fetchMyRestaurants();
       setRestaurants(res.data);
       if (res.data.length > 0) setActiveId((prev) => prev || res.data[0]._id);
+    } catch (err) {
+      setError(err.message || "Could not load restaurants");
     } finally {
       setLoading(false);
     }
@@ -79,7 +83,9 @@ export default function Dashboard() {
         </form>
       )}
 
-      {restaurants.length === 0 ? (
+      {error ? (
+        <EmptyState title="Couldn't load restaurants" message={error} />
+      ) : restaurants.length === 0 ? (
         <EmptyState
           icon={Store}
           title="No restaurants yet"

@@ -24,15 +24,42 @@ connectDB();
 
 const app = express();
 
+// Render (and most hosts) sit behind a reverse proxy. Needed so secure
+// cookies and rate-limiting see the real protocol/IP.
+app.set("trust proxy", 1);
+
 // --------------------------------------------------
 // Security & Core Middleware
 // --------------------------------------------------
 
-app.use(helmet());
+// Helmet's default Cross-Origin-Resource-Policy is "same-origin", which
+// blocks a Vercel frontend from reading JSON from the Render API.
+app.use(
+  helmet({
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+  })
+);
+
+const allowedOrigins = (process.env.CLIENT_URL || "http://localhost:5173")
+  .split(",")
+  .map((origin) => origin.trim().replace(/\/$/, ""))
+  .filter(Boolean);
+
+const isAllowedOrigin = (origin) => {
+  if (!origin) return true;
+  if (allowedOrigins.includes(origin)) return true;
+  // Vercel production + preview URLs change per deploy; allow the family.
+  if (/^https:\/\/([a-z0-9-]+\.)*vercel\.app$/.test(origin)) return true;
+  if (/^http:\/\/(localhost|127\.0\.0\.1):\d+$/.test(origin)) return true;
+  return false;
+};
 
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
+    origin: (origin, callback) => {
+      if (isAllowedOrigin(origin)) return callback(null, true);
+      return callback(null, false);
+    },
     credentials: true,
   })
 );
