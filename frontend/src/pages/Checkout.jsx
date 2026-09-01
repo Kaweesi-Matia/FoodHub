@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useCart } from "../context/CartContext.jsx";
 import { useAuth } from "../context/AuthContext.jsx";
@@ -48,6 +48,8 @@ export default function Checkout() {
   const deliveryFee = restaurant.deliveryFee;
   const taxPrice = Number((subtotal * 0.05).toFixed(2));
   const totalPrice = Number((subtotal + deliveryFee + taxPrice).toFixed(2));
+  const minOrder = restaurant.minOrderAmount || 0;
+  const remainingForMin = Math.max(0, minOrder - subtotal);
 
   const handlePlaceOrder = async (e) => {
     e.preventDefault();
@@ -160,10 +162,27 @@ export default function Checkout() {
               <span>${totalPrice.toFixed(2)}</span>
             </div>
           </div>
+          {remainingForMin > 0 && (
+            <p className="mt-3 rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-800">
+              Minimum order for this restaurant is ${minOrder.toFixed(2)}. Add
+              ${remainingForMin.toFixed(2)} more to place this order.{" "}
+              <Link to={`/restaurants/${restaurantId}`} className="font-semibold underline">
+                Add more items
+              </Link>
+            </p>
+          )}
         </div>
 
-        <button type="submit" disabled={placing} className="btn-primary w-full">
-          {placing ? "Placing order..." : `Place order · $${totalPrice.toFixed(2)}`}
+        <button
+          type="submit"
+          disabled={placing || remainingForMin > 0}
+          className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {placing
+            ? "Placing order..."
+            : remainingForMin > 0
+              ? `Add $${remainingForMin.toFixed(2)} more to order`
+              : `Place order · $${totalPrice.toFixed(2)}`}
         </button>
       </form>
     </div>

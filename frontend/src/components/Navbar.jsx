@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { ShoppingCart, User, Menu, X, LogOut, UtensilsCrossed } from "lucide-react";
+import { ShoppingCart, User, Menu, X, UtensilsCrossed } from "lucide-react";
 import { useAuth } from "../context/AuthContext.jsx";
 import { useCart } from "../context/CartContext.jsx";
 
@@ -52,18 +52,18 @@ export default function Navbar() {
 
           {user ? (
             <div className="flex items-center gap-2">
-              <Link to="/profile" className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium hover:bg-gray-100">
-                <User size={18} />
+              <Link to="/profile" className="flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium hover:bg-gray-100">
+                <User size={16} />
                 {user.name.split(" ")[0]}
               </Link>
-              <button onClick={handleLogout} className="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-red-600" title="Log out">
-                <LogOut size={18} />
+              <button type="button" onClick={handleLogout} className="btn-logout">
+                Log out
               </button>
             </div>
           ) : (
             <div className="flex items-center gap-2">
-              <Link to="/login" className="btn-outline">Log in</Link>
-              <Link to="/register" className="btn-primary">Sign up</Link>
+              <Link to="/login" className="btn-login">Log in</Link>
+              <Link to="/register" className="btn-signup">Sign up</Link>
             </div>
           )}
         </div>
@@ -88,11 +88,13 @@ export default function Navbar() {
               <Link to="/dashboard" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2 hover:bg-gray-100">Dashboard</Link>
             )}
             {user ? (
-              <button onClick={handleLogout} className="mt-1 rounded-lg px-3 py-2 text-left text-red-600 hover:bg-red-50">Log out</button>
+              <button type="button" onClick={handleLogout} className="btn-logout mt-2 w-full">
+                Log out
+              </button>
             ) : (
               <div className="mt-2 flex gap-2">
-                <Link to="/login" onClick={() => setMenuOpen(false)} className="btn-outline flex-1">Log in</Link>
-                <Link to="/register" onClick={() => setMenuOpen(false)} className="btn-primary flex-1">Sign up</Link>
+                <Link to="/login" onClick={() => setMenuOpen(false)} className="btn-login flex-1">Log in</Link>
+                <Link to="/register" onClick={() => setMenuOpen(false)} className="btn-signup flex-1">Sign up</Link>
               </div>
             )}
           </div>

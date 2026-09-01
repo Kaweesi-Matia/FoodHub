@@ -59,7 +59,7 @@ export default function Register() {
             <label className="mb-1 block text-sm font-medium text-gray-700">Password</label>
             <input type="password" name="password" required className="input" value={form.password} onChange={handleChange} placeholder="At least 6 characters" />
           </div>
-          <button type="submit" disabled={loading} className="btn-primary w-full">
+          <button type="submit" disabled={loading} className="btn btn-primary w-full !rounded-full">
             {loading ? "Creating account..." : "Sign up"}
           </button>
         </form>

@@ -313,92 +313,97 @@ header.sticky nav a[href="/cart"] span {
 }
 
 /* =========================================================
-   LOGIN
+   LOGIN / SIGN UP / LOG OUT
    ========================================================= */
 
-header.sticky nav a[href="/login"] {
-  display: inline-flex;
+.btn-login,
+.btn-signup,
+.btn-logout,
+header.sticky nav a[href="/login"],
+header.sticky nav a[href="/register"] {
+  display: inline-flex !important;
   align-items: center;
   justify-content: center;
 
   min-height: 40px;
+  min-width: 92px;
 
-  padding: 8px 14px;
+  padding: 0 18px !important;
 
-  border: 1px solid #fed7aa !important;
+  border-radius: 999px !important;
 
-  border-radius: 10px !important;
-
-  background: white !important;
-
-  color: var(--foodhub-orange) !important;
-
-  font-size: 0.88rem;
-  font-weight: 700;
-
-  text-decoration: none;
-
-  box-shadow: none !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none !important;
 
   transition:
     background 0.2s ease,
     color 0.2s ease,
     border-color 0.2s ease,
+    box-shadow 0.2s ease,
     transform 0.2s ease;
 }
 
+.btn-login,
+header.sticky nav a[href="/login"] {
+  border: 1.5px solid #fdba74 !important;
+  background: #ffffff !important;
+  color: var(--foodhub-orange-dark) !important;
+  box-shadow: none !important;
+}
+
+.btn-login:hover,
 header.sticky nav a[href="/login"]:hover {
   background: var(--foodhub-orange-light) !important;
-
-  border-color: #fdba74 !important;
-
-  color: var(--foodhub-orange-dark) !important;
-
+  border-color: var(--foodhub-orange) !important;
+  color: var(--foodhub-orange-deep) !important;
   transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(234, 88, 12, 0.12) !important;
 }
 
-/* =========================================================
-   SIGN UP — NO FILLED BUTTON
-   ========================================================= */
-
+.btn-signup,
 header.sticky nav a[href="/register"],
 header.sticky nav a.foodhub-signup-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  min-height: 40px;
-
-  padding: 8px 10px;
-
   border: none !important;
-
-  border-radius: 9px !important;
-
-  background: transparent !important;
-
-  color: var(--foodhub-orange) !important;
-
-  font-size: 0.9rem;
-  font-weight: 800;
-
-  text-decoration: none;
-
-  box-shadow: none !important;
-
-  transition:
-    color 0.2s ease,
-    background 0.2s ease,
-    transform 0.2s ease;
+  background: linear-gradient(
+    135deg,
+    var(--foodhub-orange),
+    var(--foodhub-orange-dark)
+  ) !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 16px rgba(234, 88, 12, 0.28) !important;
 }
 
+.btn-signup:hover,
 header.sticky nav a[href="/register"]:hover,
 header.sticky nav a.foodhub-signup-link:hover {
-  background: var(--foodhub-orange-light) !important;
-
-  color: var(--foodhub-orange-dark) !important;
-
+  background: linear-gradient(
+    135deg,
+    var(--foodhub-orange-dark),
+    var(--foodhub-orange-deep)
+  ) !important;
+  color: #ffffff !important;
   transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(234, 88, 12, 0.34) !important;
+}
+
+.btn-logout {
+  border: 1.5px solid #fecaca !important;
+  background: #ffffff !important;
+  color: #dc2626 !important;
+  box-shadow: none !important;
+  cursor: pointer;
+}
+
+.btn-logout:hover {
+  background: #fef2f2 !important;
+  border-color: #f87171 !important;
+  color: #b91c1c !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(220, 38, 38, 0.12) !important;
 }
 
 /* =========================================================
@@ -426,26 +431,6 @@ header.sticky nav a[href="/profile"] svg {
   color: var(--foodhub-orange) !important;
 }
 
-/* =========================================================
-   LOGOUT
-   ========================================================= */
-
-header.sticky nav button[title="Log out"] {
-  color: var(--foodhub-orange) !important;
-
-  transition:
-    color 0.2s ease,
-    background 0.2s ease,
-    transform 0.2s ease;
-}
-
-header.sticky nav button[title="Log out"]:hover {
-  color: #dc2626 !important;
-
-  background: #fef2f2 !important;
-
-  transform: translateY(-1px);
-}
 
 /* =========================================================
    REMOVE HAMBURGER MENU
@@ -863,14 +848,12 @@ main {
     gap: 3px !important;
   }
 
-  header.sticky nav a[href="/login"] {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
-  header.sticky nav a[href="/register"] {
-    padding-left: 8px;
-    padding-right: 8px;
+  header.sticky nav a[href="/login"],
+  header.sticky nav a[href="/register"],
+  header.sticky nav .btn-logout {
+    min-width: 84px;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
   }
 }
 
@@ -926,10 +909,13 @@ main {
   }
 
   header.sticky nav a[href="/login"],
-  header.sticky nav a[href="/register"] {
-    min-height: 38px;
-
-    font-size: 0.75rem;
+  header.sticky nav a[href="/register"],
+  header.sticky nav .btn-logout {
+    min-height: 36px;
+    min-width: 78px;
+    font-size: 0.78rem !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
   }
 
   .btn {

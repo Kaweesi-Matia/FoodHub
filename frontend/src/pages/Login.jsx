@@ -65,7 +65,7 @@ export default function Login() {
               placeholder="••••••••"
             />
           </div>
-          <button type="submit" disabled={loading} className="btn-primary w-full">
+          <button type="submit" disabled={loading} className="btn btn-primary w-full !rounded-full">
             {loading ? "Logging in..." : "Log in"}
           </button>
         </form>
